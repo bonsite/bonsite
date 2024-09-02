@@ -1,4 +1,4 @@
-import { asc, between, count, eq, getTableColumns, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { db } from '../database/db';
 import { SelectBonsai, bonsaiTable, ordersTable } from '../schema';
 
