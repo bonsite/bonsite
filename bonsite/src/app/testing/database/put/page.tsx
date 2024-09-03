@@ -9,5 +9,5 @@ export default function Page() {
             <h1>PAGE work in progress</h1>
         </div>
 
-    );
+    );  
 }
