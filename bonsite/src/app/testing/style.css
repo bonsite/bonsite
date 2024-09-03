@@ -1,0 +1,28 @@
+.testingOptionsTable{
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.testingOptionsButton{
+    background-color: rgb(231, 231, 231);
+    height: fit-content;
+    padding: 10px;
+    border: 1px black solid;
+    transition: .05s;
+}
+
+.testingOptionsButton:hover:enabled{
+    background-color: rgb(199, 199, 199);
+    transition: .05s;
+}
+
+.testingOptionsButton:active:enabled{
+    scale: .975;
+    transition: .05s;
+}
