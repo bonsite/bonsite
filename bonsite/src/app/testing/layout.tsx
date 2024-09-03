@@ -1,4 +1,5 @@
 import "../..//app/globals.css";
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Bonsite | Testing',
@@ -17,7 +18,7 @@ export default function RootLayout({
         <div className="text-center w-screen font-mono mt-20">
             <h1>Bonsite | Dev</h1>
             <h2>Testing Area</h2>
-            <button></button>
+            <Link href="../testing"><button className="p-0 simpleButton">Testing Menu</button></Link>
         </div>
 
         {children}
