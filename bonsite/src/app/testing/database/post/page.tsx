@@ -27,6 +27,7 @@ export default function Page() {
                         const name = formData.get('name');
                         const amount = formData.get('amount');
 
+                        // i'll probably need to fetch() this from the API and turn this entire page client-sided
                         await createBonsai({
                             id: Number(id),
                             name: String(name),
