@@ -55,6 +55,8 @@ export default function Page() {
 
                 </div>
 
+                    <p>For now, you need to check the database or the application console to see if the request was successful.</p>
+
             </div>
 
         </div>
