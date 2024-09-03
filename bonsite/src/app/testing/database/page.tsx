@@ -16,8 +16,8 @@ export default function Page() {
                 <div className="testingOptionsTable">
                     <Link href="/testing/database/get"><button className='simpleButton'>GET</button></Link>
                     <Link href="/testing/database/post"><button className='simpleButton'>POST</button></Link>
-                    <Link href="/testing/database/put"><button className='simpleButton' disabled>PUT (wip)</button></Link>
-                    <Link href="/testing/database/delete"><button className='simpleButton' disabled>DELETE (wip)</button></Link>
+                    <Link href="/testing/database/put"><button className='simpleButton'>PUT</button></Link>
+                    <Link href="/testing/database/delete"><button className='simpleButton'>DELETE</button></Link>
                 </div>
 
                 </div>

@@ -6,7 +6,7 @@ export default function Page() {
     return (
             
         <div>
-            <h1>GET work in progress</h1>
+            <h1>PAGE work in progress</h1>
         </div>
 
     );
