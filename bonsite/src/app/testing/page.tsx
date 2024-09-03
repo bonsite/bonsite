@@ -14,8 +14,8 @@ export default function Page() {
                 <h3 className='font-mono mt-10'>Testing options:</h3>
 
                 <div className="testingOptionsTable">
-                    <Link href="./testing/database"><button className='testingOptionsButton'>Database</button></Link>
-                    <Link href=""><button className='testingOptionsButton' disabled>Coming soon</button></Link>
+                    <Link href="./testing/database"><button className='simpleButton'>Database</button></Link>
+                    <Link href=""><button className='simpleButton' disabled>Coming soon</button></Link>
                 </div>
 
                 </div>
