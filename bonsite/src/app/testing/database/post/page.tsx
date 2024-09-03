@@ -61,15 +61,3 @@ export default function Page() {
 
     );
 }
-
-
-{ <form action={async () => {
-    'use server'
-    await db.insert(bonsaiTable).values({
-        id: 21,
-        name: 'Ipe',
-        amount: 2
-    })
-}}>
-    <button>Submit</button>
-</form> }
