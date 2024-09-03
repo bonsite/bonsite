@@ -2,6 +2,7 @@ import { db } from '@/database/db';
 import '../../style.css'
 import './style.css'
 import { bonsaiTable } from '@/database/schema';
+import { createBonsai } from '../_queries/post';
 
 
 export default function Page() {
@@ -20,13 +21,13 @@ export default function Page() {
                     className='dbTestInputForm'
                     action={async (formData) => {
 
-                        'use server'
+                        "use server"
 
                         const id = formData.get('id');
                         const name = formData.get('name');
                         const amount = formData.get('amount');
 
-                        await db.insert(bonsaiTable).values({
+                        await createBonsai({
                             id: Number(id),
                             name: String(name),
                             amount: Number(amount),
