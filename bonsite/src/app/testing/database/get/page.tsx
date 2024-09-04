@@ -1,4 +1,5 @@
 import '../../style.css'
+import Link from 'next/link';
 
 
 export default function Page() {
@@ -6,7 +7,21 @@ export default function Page() {
     return (
             
         <div>
-            <h1>GET work in progress</h1>
+
+            <div className='fullPageHorizontalCenterFlex'>
+
+            <div className='text-center'>
+                <h3 className='font-mono mt-10'>Testing options:</h3>
+
+                <div className="testingOptionsTable">
+                    <Link href="/testing/database/get/all"><button className='simpleButton'>GET All</button></Link>
+                    <Link href="/testing/database/get/id"><button className='simpleButton'>GET by ID</button></Link>
+                </div>
+
+                </div>
+
+            </div>
+
         </div>
 
     );
