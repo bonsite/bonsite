@@ -4,14 +4,14 @@ import { eq } from "drizzle-orm";
 
 export async function getAllBonsai(){
 
-    await db.select().from(bonsaiTable);
+    return await db.select().from(bonsaiTable);
 
 }
 
 export async function getBonsaiById(id: number){
 
-    await db.select().from(bonsaiTable).where(eq(bonsaiTable.id, id));
-    
+    return await db.select().from(bonsaiTable).where(eq(bonsaiTable.id, id));
+
 }
 
 
