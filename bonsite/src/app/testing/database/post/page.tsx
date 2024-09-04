@@ -59,17 +59,17 @@ export default function Page() {
 
                         <label>
                             ID:
-                            <input type='number' name='id' required />
+                            <input autoComplete="off" type='number' name='id' required />
                         </label>
 
                         <label>
                             Name:
-                            <input type='text' name='name' required />
+                            <input autoComplete="off" type='text' name='name' required />
                         </label>
 
                         <label>
                             Amount:
-                            <input type='number' name='amount' required />
+                            <input autoComplete="off" type='number' name='amount' required />
                         </label>
 
                         <button type='submit' className='simpleButton'>Submit</button>

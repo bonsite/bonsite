@@ -39,6 +39,7 @@ export default function BonsaiByIdPage() {
                     <label>
                         ID:
                         <input
+                            autoComplete="off"
                             type='number'
                             value={id}
                             onChange={(e) => setId(Number(e.target.value))}
