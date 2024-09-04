@@ -9,7 +9,7 @@ export default function AllBonsaiPage() {
 
     const fetchBonsai = async () => {
         try {
-            const response = await fetch('/testing/database/api/get/all');
+            const response = await fetch('/testing/database/api/get/all', { cache: "no-store" });
             const result = await response.json();
             if (result.success) {
                 setBonsai(result.data);
