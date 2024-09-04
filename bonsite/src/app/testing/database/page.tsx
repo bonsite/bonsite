@@ -11,7 +11,7 @@ export default function Page() {
             <div className='fullPageHorizontalCenterFlex'>
 
             <div className='text-center'>
-                <h3 className='font-mono mt-10'>Testing options:</h3>
+                <h3 className='font-mono mt-10'>Database Testing options:</h3>
 
                 <div className="testingOptionsTable">
                     <Link href="/testing/database/get"><button className='simpleButton'>GET</button></Link>
