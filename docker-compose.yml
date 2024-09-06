@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     build:
@@ -21,7 +23,7 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      DATABASE_URL: ${DATABASE_URL}
     volumes:
       - ./bonsite:/app
     command: npm run build && npm run start
