@@ -1,33 +1,17 @@
-# version: '3.8'
-
 services:
-  db:
+  bonsite:
     build:
-      context: ./database
+      context: ./bonsite
       dockerfile: Dockerfile
-    environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    depends_on:
+      - database
+    ports:
+      - "3000:3000"
+
+  database:
+    build: ./database
+    dockerfile: Dockerfile
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
-  nextjs:
-    build:
-      context: ./bonsite
-      dockerfile: Dockerfile
-    working_dir: /app
-    ports:
-      - "3000:3000"
-    # depends_on:
-    #   - db
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
-    # volumes:
-    #   - ./bonsite:/app
-    command: npm run build && npm run start
-
-volumes:
-  postgres_data:
