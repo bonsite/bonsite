@@ -1,8 +1,7 @@
-# Use a imagem oficial do PostgreSQL como base
 FROM postgres:latest
 
-# Copie o arquivo SQL para dentro do container
-COPY init.sql /docker-entrypoint-initdb.d/
+ENV POSTGRES_DB=bonsite_db
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=yourpassword
 
-# Exponha a porta padrão do PostgreSQL
-EXPOSE 5432
+COPY init.sql /docker-entrypoint-initdb.d/
