@@ -9,8 +9,9 @@ services:
       - "3000:3000"
 
   database:
-    build: ./database
-    dockerfile: Dockerfile
+    build: 
+      context: ./database
+      dockerfile: Dockerfile
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
