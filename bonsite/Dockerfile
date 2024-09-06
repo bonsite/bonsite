@@ -1,3 +1,16 @@
+## HOW TO RUN // COMO RODAR
+
+## create image // criar imagem
+## docker image build -t bonsite-bonsite:latest .
+
+## run image // rodar imagem
+## docker container run -p 3000:3000 bonsite-bonsite:latest
+
+## you can also run it from docker desktop // tambem da pra rodar pelo docker desktop
+
+## ill write the docker-compose soon // vou fazer o docker-compose em breve
+
+
 FROM node:22.8-alpine as base
 
 FROM base AS deps
