@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAllBonsai, getBonsaiById  } from "../../../_queries/get";
-
+import { getAllBonsai } from "../../../_queries/get";
 
 export async function GET() {
     try {

@@ -1,15 +1,21 @@
 "use client";
-
 import { useState } from 'react';
 import '../../style.css';
 
+// Define a type for the bonsai data
+interface Bonsai {
+    id: number;
+    name: string;
+    amount: number;
+}
+
 export default function DeleteBonsaiPage() {
     const [id, setId] = useState<number | ''>('');
-    const [deletedBonsai, setDeletedBonsai] = useState<any | null>(null);
+    const [deletedBonsai, setDeletedBonsai] = useState<Bonsai | null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
     const handleDelete = async () => {
-        if (id === '' || isNaN(id)) {
+        if (id === '' || isNaN(Number(id))) {
             setMessage('Please enter a valid ID.');
             return;
         }
@@ -18,7 +24,9 @@ export default function DeleteBonsaiPage() {
             const response = await fetch(`/testing/database/api/delete/${id}`, {
                 method: 'DELETE',
             });
+
             const result = await response.json();
+
             if (result.success) {
                 setDeletedBonsai(result.data); // get the deleted bonsai details
                 setMessage('Bonsai deleted successfully!');
@@ -36,7 +44,6 @@ export default function DeleteBonsaiPage() {
         <div className='fullPageHorizontalCenterFlex'>
             <div className='text-center mt-10 bg-gray-400 p-10'>
                 <h3 className='font-semibold'>DELETE | Bonsai by ID</h3>
-
                 <div className='w-full'>
                     <label>
                         ID:
@@ -48,13 +55,10 @@ export default function DeleteBonsaiPage() {
                             className='simpleInput'
                         />
                     </label>
-
                     <button onClick={handleDelete} className='simpleButton'>
                         Delete Bonsai
                     </button>
-
                     {message && <p>{message}</p>}
-
                     {deletedBonsai && (
                         <div>
                             <p>ID: {deletedBonsai.id}</p>
