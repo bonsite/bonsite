@@ -1,0 +1,12 @@
+# Ignore environment files
+.env
+
+# Ignore node_modules if you add JavaScript dependencies later
+node_modules/
+
+# Ignore Docker-specific files and directories
+pgdata/
+
+# Miscellaneous files to ignore
+.DS_Store
+*.log
