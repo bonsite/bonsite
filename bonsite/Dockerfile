@@ -1,4 +1,4 @@
-FROM node:22.8-alpine as base
+FROM node:22.8-alpine AS base
 
 FROM base AS deps
 
@@ -20,13 +20,10 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# COPY --from=builder /app/public ./public
-
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 nextjs \
+    && mkdir .next \
+    && chown nextjs:nodejs .next
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
@@ -37,4 +34,6 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-CMD HOSTNAME="0.0.0.0" node server.js
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
