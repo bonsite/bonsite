@@ -12,7 +12,7 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE tablename = 'categories') THEN
         CREATE TABLE categories (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(50) NOT NULL
+            name VARCHAR2(50) NOT NULL
         );
     END IF;
 END $$;
@@ -22,7 +22,7 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE tablename = 'bonsais') THEN
         CREATE TABLE bonsais (
             id SERIAL PRIMARY KEY,
-            name VARCHAR(100) NOT NULL,
+            name VARCHAR2(100) NOT NULL,
             category_id INT REFERENCES categories(id),
             details JSONB
         );
