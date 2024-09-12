@@ -8,7 +8,7 @@ export default function Page() {
     const [id, setId] = useState<number | null>(null);
     const [amount, setAmount] = useState<number | null>(null);
     const [message, setMessage] = useState<string | null>(null);
-    const [updatedData, setUpdatedData] = useState<any | null>(null);
+    const [updatedData, setUpdatedData] = useState<any>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 
