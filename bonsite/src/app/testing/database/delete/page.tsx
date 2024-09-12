@@ -55,9 +55,11 @@ export default function DeleteBonsaiPage() {
                             className='simpleInput'
                         />
                     </label>
+                    <br /> {/* Add a line break for spacing */}
                     <button onClick={handleDelete} className='simpleButton'>
                         Delete Bonsai
                     </button>
+                    <br /> {/* Add a line break for spacing */}
                     {message && <p>{message}</p>}
                     {deletedBonsai && (
                         <div>
