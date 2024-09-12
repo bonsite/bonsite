@@ -5,7 +5,7 @@ import '../../../style.css';
 
 export default function BonsaiByIdPage() {
     const [id, setId] = useState<number | ''>('');
-    const [bonsai, setBonsai] = useState<any | null>(null);
+    const [bonsai, setBonsai] = useState<null>(null);
     const [message, setMessage] = useState<string | null>(null);
 
     const fetchBonsaiById = async () => {
