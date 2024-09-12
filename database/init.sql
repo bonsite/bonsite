@@ -49,14 +49,17 @@ DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM bonsais WHERE name = 'Bonsai de Jabuticaba') THEN
         INSERT INTO bonsais (name, category_id, details) VALUES 
-        ('Bonsai de Jabuticaba', 1, 
-        '{
-            "sun_exposure": "Sol pleno",
-            "watering": "Moderada",
-            "size": "Pequeno",
-            "pruning": "Regular",
-            "fertilization": "Mensal",
-            "delicacy": "Alta"
-        }');
+        (
+            'Bonsai de Jabuticaba',
+            1,
+            E'{
+                "sun_exposure": "Sol pleno",
+                "watering": "Moderada",
+                "size": "Pequeno",
+                "pruning": "Regular",
+                "fertilization": "Mensal",
+                "delicacy": "Alta"
+            }'
+        );
     END IF;
 END $$;
