@@ -21,7 +21,7 @@ export default function BonsaiByIdPage() {
                 setBonsai(result.data);
                 setMessage(null); // Clear any previous messages
             } else {
-                setMessage(`ERRROR: ${result.error}`);
+                setMessage(`ERROR: ${result.error}`);
                 setBonsai(null); // Clear previous bonsai data
             }
         } catch (error) {
@@ -46,13 +46,13 @@ export default function BonsaiByIdPage() {
                             className='simpleInput'
                         />
                     </label>
-
+                    {/* Add spacing between label and button */}
+                    <br />
                     <button onClick={fetchBonsaiById} className='simpleButton'>
                         Fetch Bonsai
                     </button>
-
+                    <br /> {/* Add spacing between button and message */}
                     {message && <p>{message}</p>}
-
                     {bonsai && (
                         <div>
                             <p>ID: {bonsai.id}</p>
