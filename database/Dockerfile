@@ -1,4 +1,4 @@
-FROM postgres:latest
+FROM postgres:16-alpine
 
 ENV POSTGRES_DB=bonsite_db
 ENV POSTGRES_USER=postgres

@@ -6,24 +6,24 @@ export const metadata = {
   description: 'Testing area of Bonsite'
 };
 
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<RootLayoutProps>) {
   return (
-
     <div>
+      <div className="text-center w-screen font-mono mt-20">
+        <h1>Bonsite | Dev</h1>
+        <h2>Testing Area</h2>
+        <Link href="/testing">
+          <button className="p-0 simpleButton">Testing Menu</button>
+        </Link>
+      </div>
 
-        <div className="text-center w-screen font-mono mt-20">
-            <h1>Bonsite | Dev</h1>
-            <h2>Testing Area</h2>
-            <Link href="/testing"><button className="p-0 simpleButton">Testing Menu</button></Link>
-        </div>
-
-        {children}
-
+      {children}
     </div>
-
   );
 }
