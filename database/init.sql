@@ -52,7 +52,7 @@ BEGIN
         (
             'Bonsai de Jabuticaba',
             1,
-            E'{
+            '{
                 "sun_exposure": "Sol pleno",
                 "watering": "Moderada",
                 "size": "Pequeno",
