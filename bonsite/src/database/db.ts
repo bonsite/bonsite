@@ -6,7 +6,7 @@ config({ path: ".env" }); // ou .env.local
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
-    throw new Error("DATABASE_URL não está definida");
+    throw new Error("DATABASE_URL não definida no .env");
 }
 
 const sql = neon(databaseUrl);
