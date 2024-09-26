@@ -42,16 +42,16 @@ export default function AllBonsaiPage() {
                                 <thead>
                                     <tr>
                                         <th className="py-2 px-4 border-b">ID</th>
-                                        <th className="py-2 px-4 border-b">Name</th>
-                                        <th className="py-2 px-4 border-b">Description</th>
-                                        <th className="py-2 px-4 border-b">Price</th>
-                                        <th className="py-2 px-4 border-b">Category</th>
-                                        <th className="py-2 px-4 border-b">Sunlight</th>
-                                        <th className="py-2 px-4 border-b">Water</th>
-                                        <th className="py-2 px-4 border-b">Size</th>
-                                        <th className="py-2 px-4 border-b">Pruning</th>
-                                        <th className="py-2 px-4 border-b">Soil</th>
-                                        <th className="py-2 px-4 border-b">Delicacy</th>
+                                        <th className="py-2 px-4 border-b">Nome</th>
+                                        <th className="py-2 px-4 border-b">Descricao</th>
+                                        <th className="py-2 px-4 border-b">Preco</th>
+                                        <th className="py-2 px-4 border-b">Categoria</th>
+                                        <th className="py-2 px-4 border-b">Sol</th>
+                                        <th className="py-2 px-4 border-b">Agua</th>
+                                        <th className="py-2 px-4 border-b">Tamanho</th>
+                                        <th className="py-2 px-4 border-b">Poda</th>
+                                        <th className="py-2 px-4 border-b">Solo</th>
+                                        <th className="py-2 px-4 border-b">Delicadeza</th>
                                     </tr>
                                 </thead>
                                 <tbody>
