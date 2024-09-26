@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { getAllBonsai } from "../../../_queries/get";
+import { getAllBonsais } from "../../../_queries/get"
 
 export async function GET() {
     try {
         console.log('Fetching all bonsai...');
-        const bonsai = await getAllBonsai();
+        const bonsai = await getAllBonsais();
         console.log('Fetched bonsai list:', bonsai);
         return NextResponse.json({ success: true, data: bonsai }, { headers: { 'Cache-Control': 'no-store' } });
     } catch (error) {
