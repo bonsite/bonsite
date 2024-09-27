@@ -10,6 +10,33 @@ const products = [
     price: 'R$129.99',
     categoria: 'Frutifera',
   },
+  {
+    id: 2,
+    name: 'Limao',
+    href: '#',
+    imageSrc: 'https://images.tcdn.com.br/img/img_prod/947008/bonsai_pitanga_6_anos_30_cm_7565_1_2daedb4cb6416f3980bcc7ae781b1b31.jpeg',
+    imageAlt: "Bonsai de Limao",
+    price: 'R$89.99',
+    categoria: 'Frutifera',
+  },
+  {
+    id: 3,
+    name: 'Ameixa',
+    href: '#',
+    imageSrc: 'https://images.tcdn.com.br/img/img_prod/947008/bonsai_pitanga_6_anos_30_cm_7565_1_2daedb4cb6416f3980bcc7ae781b1b31.jpeg',
+    imageAlt: "Bonsai de Ameixa",
+    price: 'R$220.00',
+    categoria: 'Frutifera',
+  },
+  {
+    id: 4,
+    name: 'Ipe Amarelo',
+    href: '#',
+    imageSrc: 'https://images.tcdn.com.br/img/img_prod/947008/bonsai_pitanga_6_anos_30_cm_7565_1_2daedb4cb6416f3980bcc7ae781b1b31.jpeg',
+    imageAlt: "Bonsai de Ipe Amarelo",
+    price: 'R$549.99',
+    categoria: 'Florifera',
+  },
   // other bonsais
 ]
 
