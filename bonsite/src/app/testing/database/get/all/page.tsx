@@ -8,19 +8,18 @@ export default function AllBonsaiPage() {
     const [message, setMessage] = useState<string | null>(null);
 
     const fetchBonsai = async () => {
-        
-            fetch('/testing/database/api/get/all')
-            .then(response => response.json())
-            .then(data => console.log(data))
-
-            
-            //console.log(response.);
-
-            console.log("AAAAAAAAAAAAA");  
-            
-            
-
-
+        try {
+            const response = await fetch('/testing/database/api/get/all');
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status} ${response.statusText}`);
+            }
+            const data = await response.json();
+            setBonsai(data); // Atualiza os dados do bonsai no estado
+            setMessage(null); // Limpa a mensagem de erro, caso exista
+        } catch (error: any) {
+            setMessage(error.message); // Define a mensagem de erro
+            setBonsai([]); // Reseta o array bonsai em caso de erro
+        }
     };
 
     return (
@@ -42,15 +41,15 @@ export default function AllBonsaiPage() {
                                     <tr>
                                         <th className="py-2 px-4 border-b">ID</th>
                                         <th className="py-2 px-4 border-b">Nome</th>
-                                        <th className="py-2 px-4 border-b">Descricao</th>
-                                        <th className="py-2 px-4 border-b">Preco</th>
+                                        <th className="py-2 px-4 border-b">Descrição</th>
+                                        <th className="py-2 px-4 border-b">Preço</th>
                                         <th className="py-2 px-4 border-b">Categoria</th>
                                         <th className="py-2 px-4 border-b">Sol</th>
-                                        <th className="py-2 px-4 border-b">Agua</th>
+                                        <th className="py-2 px-4 border-b">Água</th>
                                         <th className="py-2 px-4 border-b">Tamanho</th>
                                         <th className="py-2 px-4 border-b">Poda</th>
                                         <th className="py-2 px-4 border-b">Solo</th>
-                                        <th className="py-2 px-4 border-b">Delicadeza</th>
+                                        <th className="py-2 px-4">Delicadeza</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,8 +68,7 @@ export default function AllBonsaiPage() {
                                             <td className="py-2 px-4">{item.delicadeza || 'N/A'}</td>
                                         </tr>
                                     ))}
-                                    </tbody>
-
+                                </tbody>
                             </table>
                         </div>
                     )}
