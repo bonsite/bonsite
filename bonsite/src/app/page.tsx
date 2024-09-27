@@ -1,4 +1,4 @@
 export default function Page() {
-    return <h1>This is Bonsite!</h1>;
+    return <h1>This is Bonsite! aqui vai ser a loja</h1>;
   }
   
