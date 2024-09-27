@@ -8,20 +8,19 @@ export default function AllBonsaiPage() {
     const [message, setMessage] = useState<string | null>(null);
 
     const fetchBonsai = async () => {
-        try {
-            const response = await fetch('/testing/database/api/get/all', { cache: "no-store" });
-            const result = await response.json();
-            if (result.success) {
-                setBonsai(result.data);
-                setMessage(null); // Clear any previous messages
-            } else {
-                setMessage(`Failed to fetch bonsai: ${result.error}`);
-                setBonsai([]); // Clear previous bonsai data
-            }
-        } catch (error) {
-            setMessage('An error occurred while fetching bonsai.');
-            setBonsai([]); // Clear previous bonsai data
-        }
+        
+            fetch('/testing/database/api/get/all')
+            .then(response => response.json())
+            .then(data => console.log(data))
+
+            
+            //console.log(response.);
+
+            console.log("AAAAAAAAAAAAA");  
+            
+            
+
+
     };
 
     return (
