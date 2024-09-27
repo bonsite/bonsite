@@ -1,4 +1,18 @@
+"use client"
+
+import Product from '@/components/Store/ProductList';
+import Navbar from '@/components/Store/Header/Navbar'
+
+
 export default function Page() {
-    return <h1>This is Bonsite! aqui vai ser a loja</h1>;
+    return <>
+
+      <Navbar></Navbar>
+      
+      <Product></Product>
+
+
+    </>;
+  
   }
   

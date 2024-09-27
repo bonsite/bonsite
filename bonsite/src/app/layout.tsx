@@ -12,7 +12,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        <link rel='icon' href="https://www.svgrepo.com/show/276833/bonsai.svg"></link>
+      </head>
       <body>{children}</body>
     </html>
   );
