@@ -4,11 +4,11 @@ import ProductItem from '../ProductItem';
 
 interface Product {
   id: number;
-  nome: string; // Adjusted to match your database column names
-  imageSrc: string; // You may want to adjust this if you have a separate image handling
-  imageAlt: string; // Same as above
-  preco: string; // Adjusted to match your database column names
-  categoria: string; // Adjusted to match your database column names
+  nome: string;
+  imageSrc: string;
+  imageAlt: string;
+  preco: string;
+  categoria: string;
 }
 
 const ProductList: React.FC = () => {
@@ -23,13 +23,16 @@ const ProductList: React.FC = () => {
           throw new Error('Failed to fetch products');
         }
         const data = await response.json();
-        const formattedData = data.map((product: any) => ({
-          id: product.id,
-          nome: product.nome,
-          imageSrc: product.imageSrc || '', // Ensure you handle image source correctly
-          imageAlt: product.nome, // Adjust as necessary
-          preco: `R$${(parseFloat(product.preco) || 0).toFixed(2)}`, // Convert to float and format the price
-          categoria: product.categoria,
+        const formattedData = await Promise.all(data.map(async (product: any) => {
+          const imageSrc = await findImage(product.id); // Dynamically fetch image
+          return {
+            id: product.id,
+            nome: product.nome,
+            imageSrc, // Use the found image source
+            imageAlt: product.nome,
+            preco: `R$${parseFloat(product.preco).toFixed(2)}`,
+            categoria: product.categoria,
+          };
         }));
         setProducts(formattedData);
       } catch (error) {
@@ -41,6 +44,23 @@ const ProductList: React.FC = () => {
 
     fetchProducts();
   }, []);
+
+  const findImage = async (id: number): Promise<string> => {
+    const imagePath = `/images/bonsais/cover/${id}/cover.jpg`; // Path to the specific image
+    const fallbackImagePath = '/images/bonsais/cover/default-image.jpg'; // Path to the fallback image
+
+    const imageExists = await checkImageExists(imagePath); // Check if specific image exists
+    return imageExists ? imagePath : fallbackImagePath; // Return the specific image or fallback
+  };
+
+  const checkImageExists = async (src: string): Promise<boolean> => {
+    try {
+      const response = await fetch(src);
+      return response.ok; // Check if the image is accessible
+    } catch {
+      return false; // Return false if there's an error
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>; // Simple loading state
@@ -54,7 +74,7 @@ const ProductList: React.FC = () => {
             <ProductItem
               key={product.id}
               id={product.id}
-              name={product.nome} // Updated to match your database column names
+              name={product.nome}
               href="#" // Adjust as necessary
               imageSrc={product.imageSrc} // Ensure you have a valid image src
               imageAlt={product.imageAlt} // Ensure you have a valid alt text
