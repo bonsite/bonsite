@@ -1,6 +1,6 @@
 "use client"
 
-import Product from '@/components/Store/ProductList';
+import ProductList from '@/components/Store/Product/ProductList';
 import Navbar from '@/components/Store/Header/Navbar'
 
 
@@ -9,7 +9,7 @@ export default function Page() {
 
       <Navbar></Navbar>
       
-      <Product></Product>
+      <ProductList></ProductList>
 
 
     </>;
