@@ -55,6 +55,7 @@ export default function Page() {
 
                         <div className='form-group'>
                             <label htmlFor='amount'>
+                            
                                 New Amount:
                                 <input
                                     id='amount'

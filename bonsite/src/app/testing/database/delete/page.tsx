@@ -46,7 +46,7 @@ export default function DeleteBonsaiPage() {
                 <h3 className='font-semibold'>DELETE | Bonsai by ID</h3>
                 <div className='w-full'>
                     <label>
-                        ID:
+                        ID:{' '}
                         <input
                             autoComplete="off"
                             type='number'
