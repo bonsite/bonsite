@@ -14,8 +14,8 @@ export default function Page() {
                 <h3 className='font-mono mt-10'>GET Testing options:</h3>
 
                 <div className="testingOptionsTable">
-                    <Link href="/testing/database/get/all"><button className='simpleButton'>GET All</button></Link>
-                    <Link href="/testing/database/get/id"><button className='simpleButton'>GET by ID</button></Link>
+                    <Link href="/dev/testing/database/get/all"><button className='simpleButton'>GET All</button></Link>
+                    <Link href="/dev/testing/database/get/id"><button className='simpleButton'>GET by ID</button></Link>
                 </div>
 
                 </div>
