@@ -43,7 +43,7 @@ export default function Page() {
                     <form className='dbTestInputForm' onSubmit={handleSubmit}>
                         <div className='form-group'>
                             <label>
-                                ID:
+                                ID:{' '}
                                 <input
                                     autoComplete="off"
                                     type='number'
@@ -56,7 +56,7 @@ export default function Page() {
 
                         <div className='form-group'>
                             <label>
-                                Name:
+                                Name:{' '}
                                 <input
                                     autoComplete="off"
                                     type='text'
@@ -69,7 +69,7 @@ export default function Page() {
 
                         <div className='form-group'>
                             <label>
-                                Amount:
+                                Amount:{' '}
                                 <input
                                     autoComplete="off"
                                     type='number'
