@@ -37,7 +37,7 @@ export default function BonsaiByIdPage() {
 
                 <div className='w-full'>
                     <label>
-                        ID:
+                        ID:{ ' ' }
                         <input
                             autoComplete="off"
                             type='number'
