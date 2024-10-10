@@ -21,7 +21,7 @@ export default function DeleteBonsaiPage() {
         }
 
         try {
-            const response = await fetch(`/testing/database/api/delete/${id}`, {
+            const response = await fetch(`/dev/testing/database/api/delete/${id}`, {
                 method: 'DELETE',
             });
 

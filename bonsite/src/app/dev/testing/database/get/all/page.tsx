@@ -9,7 +9,7 @@ export default function AllBonsaiPage() {
 
     const fetchBonsai = async () => {
         try {
-            const response = await fetch('/testing/database/api/get/all');
+            const response = await fetch('/dev/testing/database/api/get/all');
             if (!response.ok) {
                 throw new Error(`Error: ${response.status} ${response.statusText}`);
             }

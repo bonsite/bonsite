@@ -17,7 +17,7 @@ export default function Page() {
             return;
         }
 
-        const response = await fetch(`/testing/database/api/put/${id}/${amount}`, {
+        const response = await fetch(`/dev/testing/database/api/put/${id}/${amount}`, {
             method: 'PUT',
         });
 

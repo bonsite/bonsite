@@ -15,7 +15,7 @@ export default function BonsaiByIdPage() {
         }
 
         try {
-            const response = await fetch(`/testing/database/api/get/id/${id}`);
+            const response = await fetch(`/dev/testing/database/api/get/id/${id}`);
             const result = await response.json();
             if (result.success) {
                 setBonsai(result.data);

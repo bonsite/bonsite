@@ -21,7 +21,7 @@ export default function Page() {
         const solo = formData.get('solo');
         const delicadeza = formData.get('delicadeza');
 
-        const response = await fetch('/testing/database/api/post', {
+        const response = await fetch('/dev/testing/database/api/post', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

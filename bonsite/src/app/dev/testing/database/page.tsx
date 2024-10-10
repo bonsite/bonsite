@@ -14,10 +14,10 @@ export default function Page() {
                 <h3 className='font-mono mt-10'>OUTDATED!!! DO NOT USE FOR NOW !! Database Testing options:</h3>
 
                 <div className="testingOptionsTable">
-                    <Link href="/testing/database/get"><button className='simpleButton'>GET</button></Link>
-                    <Link href="/testing/database/post"><button className='simpleButton'>POST</button></Link>
-                    <Link href="/testing/database/put"><button className='simpleButton'>PUT</button></Link>
-                    <Link href="/testing/database/delete"><button className='simpleButton'>DELETE</button></Link>
+                    <Link href="/dev/testing/database/get"><button className='simpleButton'>GET</button></Link>
+                    <Link href="/dev/testing/database/post"><button className='simpleButton'>POST</button></Link>
+                    <Link href="/dev/testing/database/put"><button className='simpleButton'>PUT</button></Link>
+                    <Link href="/dev/testing/database/delete"><button className='simpleButton'>DELETE</button></Link>
                 </div>
 
                 </div>
