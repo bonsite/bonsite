@@ -40,7 +40,7 @@ export default function Page() {
                     <form className='dbTestInputForm' onSubmit={handleSubmit}>
                         <div className='form-group'>
                             <label htmlFor='id'>
-                                ID:
+                                ID:{' '}
                                 <input
                                     id='id'
                                     autoComplete="off"
