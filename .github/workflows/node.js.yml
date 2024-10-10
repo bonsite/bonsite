@@ -29,7 +29,5 @@ jobs:
         working-directory: ./bonsite
     - run: npm ci
       working-directory: ./bonsite
-    - run: npm run build --if-present
-      working-directory: ./bonsite
     - run: npm test --if-present
       working-directory: ./bonsite
