@@ -56,7 +56,7 @@ export default function Page() {
                         <div className='form-group'>
                             <label htmlFor='amount'>
                             
-                                New Amount:
+                                New Amount:{' '}
                                 <input
                                     id='amount'
                                     autoComplete="off"
