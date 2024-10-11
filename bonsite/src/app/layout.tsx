@@ -1,4 +1,5 @@
 import "../app/globals.css";
+import Navbar from '@/components/Store/Header/Navbar';
 
 export const metadata = {
   title: 'Bonsite',
@@ -12,10 +13,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <head>
+
         <link rel='icon' href="https://www.svgrepo.com/show/276833/bonsai.svg"></link>
+
       </head>
-      <body>{children}</body>
+
+      <body>
+
+      <Navbar></Navbar>
+
+      {children}
+      
+      </body>
+
     </html>
   );
 }
