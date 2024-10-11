@@ -3,81 +3,29 @@
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 
-async function fetchProduct(id : number){
-
-  try{
-
-    let response = await fetch(`/api/store/fetchbonsai/${id}`);
-
-    if(!response.ok){
-
-      throw new Error('Failed to fetch product');
-
-    }
-
-    let data = await response.json();
-    
-    let formattedData = await Promise.all(data.map(async (product: any) => {
-
-      const imageSrc = await findImage(product.id); // Dynamically fetch image
-      return {
-        id: product.id,
-        nome: product.nome,
-        imageSrc, // Use the found image source
-        imageAlt: product.nome,
-        preco: `R$${parseFloat(product.preco).toFixed(2)}`,
-        categoria: product.categoria,
-      };
-
-    }));
-    setProducts(formattedData);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      } finally {
-        // setLoading(false);
-      }
-    };
-
-    const findImage = async (id: number): Promise<string> => {
-    const imagePath = `/images/bonsais/product/${id}/image.jpg`; // Path to the specific image
-    const fallbackImagePath = '/images/bonsais/product/default-image.jpg'; // Path to the fallback image
-
-    const imageExists = await checkImageExists(imagePath); // Check if specific image exists
-    return imageExists ? imagePath : fallbackImagePath; // Return the specific image or fallback
-  };
-
-  const checkImageExists = async (src: string): Promise<boolean> => {
-    try {
-      const response = await fetch(src);
-      return response.ok; // Check if the image is accessible
-    } catch {
-      return false; // Return false if there's an error
-    }
-  };
-
 const product = {
-  name: 'Basic Tee 6-Pack',
-  price: '$192',
+  name: 'Bonsai de Cereja',
+  price: 'R$99,99',
   href: '#',
   breadcrumbs: [
-    { id: 1, name: 'Men', href: '#' },
-    { id: 2, name: 'Clothing', href: '#' },
+    { id: 1, name: 'Bonsais', href: '#' },
+    { id: 2, name: 'Frutíferas', href: '#' },
   ],
   images: [
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-secondary-product-shot.jpg',
+      src: 'https://www.niponbonsai.com.br/image/cachewebp/catalog/produtos/pre-bonsai/00196-800x800.webp',
       alt: 'Two each of gray, white, and black shirts laying flat.',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg',
+      src: 'https://http2.mlstatic.com/D_NQ_NP_602322-MLB51011063118_082022-O.webp',
       alt: 'Model wearing plain black basic tee.',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg',
+      src: 'https://bonsaicuritiba.com.br/wp-content/uploads/2023/02/IMG_20230213_150215340_MF_PORTRAIT.jpg',
       alt: 'Model wearing plain gray basic tee.',
     },
     {
-      src: 'https://tailwindui.com/plus/img/ecommerce-images/product-page-02-featured-product-shot.jpg',
+      src: 'https://thumbs.dreamstime.com/z/%C3%A1rvore-de-cereja-da-argila-bonsai-feito-m%C3%A3o-81687889.jpg',
       alt: 'Model wearing plain white basic tee.',
     },
   ],
@@ -97,17 +45,19 @@ const product = {
     { name: '3XL', inStock: true },
   ],
   description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+    'Cereja para bolos e sorvetes essas coisas',
   highlights: [
-    'Hand cut and sewn locally',
-    'Dyed with our proprietary colors',
-    'Pre-washed & pre-shrunk',
-    'Ultra-soft 100% cotton',
+    'Sol: 4',
+    'Agua: 7',
+    'Tamanho: 3',
+    'Poda: 9',
+    'Solo: 7',
+    'Delicadeza: 9',
   ],
   details:
     'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
 }
-const reviews = { href: '#', average: 4, totalCount: 117 }
+const reviews = { href: '#', average: 4, totalCount: 2 }
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
