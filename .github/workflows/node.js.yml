@@ -20,14 +20,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: create env file
+      run: |
+        touch .env
+        echo DATABASE_URL=${{secrets.DATABASE_URL}} >> .env
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ./bonsite/package-lock.json
-        working-directory: ./bonsite
     - run: npm ci
-      working-directory: ./bonsite
-    - run: npm test --if-present
-      working-directory: ./bonsite
+    - run: npm run lint
+    - run: npm run build
+    - run: npm run test --if-present
