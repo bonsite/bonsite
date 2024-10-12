@@ -25,9 +25,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ./bonsite/package-lock.json
-        working-directory: ./bonsite
     - run: npm ci
-      working-directory: ./bonsite
+    - run: npm lint
+    - run: npm build
     - run: npm test --if-present
-      working-directory: ./bonsite
