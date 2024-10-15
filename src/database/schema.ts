@@ -41,7 +41,7 @@ export const clientesTable = Schema.table('clientes', {
 export const pedidosTable = Schema.table('pedidos', {
     id: uuid('id').primaryKey(),
     bonsai_id: uuid('bonsai_id').references(() => bonsaisTable.id).notNull(),  // Foreign key referencing bonsais table
-    cliente_id: uuid('clientes_id').references(() => clientesTable.id).notNull(),  // Foreign key referencing clientes table
+    cliente_id: uuid('cliente_id').references(() => clientesTable.id).notNull(),  // Foreign key referencing clientes table
     concluido: boolean('concluido').notNull().default(false)  // Boolean for completed status
 });
 
