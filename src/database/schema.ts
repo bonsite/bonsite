@@ -9,6 +9,7 @@ export const categorias = Schema.enum('categorias', ['Indefinida', 'Frutíferas'
 export const bonsaisTable = Schema.table('bonsais', {
     id: uuid('id').primaryKey(),
     nome: text('nome').notNull(),
+    url: text('url').notNull(),
     descricao: text('descricao'),
     preco: decimal('preco', { precision: 9, scale: 2 }).notNull(),  // 'double' type in the diagram is handled by decimal in Drizzle ORM
     categoria: categorias('categoria').default('Indefinida').notNull(),
