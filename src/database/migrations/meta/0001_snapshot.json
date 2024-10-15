@@ -1,0 +1,261 @@
+{
+  "id": "d9e8001a-b308-413c-bf63-5a3a86c665b7",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "schema.bonsais": {
+      "name": "bonsais",
+      "schema": "schema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "url": {
+          "name": "url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "descricao": {
+          "name": "descricao",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "preco": {
+          "name": "preco",
+          "type": "numeric(9, 2)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "categoria": {
+          "name": "categoria",
+          "type": "categorias",
+          "typeSchema": "schema",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'Indefinida'"
+        },
+        "sol": {
+          "name": "sol",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "sol_desc": {
+          "name": "sol_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "agua": {
+          "name": "agua",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "agua_desc": {
+          "name": "agua_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tamanho": {
+          "name": "tamanho",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tamanho_desc": {
+          "name": "tamanho_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "poda": {
+          "name": "poda",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "poda_desc": {
+          "name": "poda_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "solo": {
+          "name": "solo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "solo_desc": {
+          "name": "solo_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "delicadeza": {
+          "name": "delicadeza",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "delicadeza_desc": {
+          "name": "delicadeza_desc",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "visivel": {
+          "name": "visivel",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "schema.clientes": {
+      "name": "clientes",
+      "schema": "schema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "nome": {
+          "name": "nome",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "telefone": {
+          "name": "telefone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "cep": {
+          "name": "cep",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "schema.pedidos": {
+      "name": "pedidos",
+      "schema": "schema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "bonsai_id": {
+          "name": "bonsai_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "clientes_id": {
+          "name": "clientes_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "concluido": {
+          "name": "concluido",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "pedidos_bonsai_id_bonsais_id_fk": {
+          "name": "pedidos_bonsai_id_bonsais_id_fk",
+          "tableFrom": "pedidos",
+          "tableTo": "bonsais",
+          "schemaTo": "schema",
+          "columnsFrom": [
+            "bonsai_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "pedidos_clientes_id_clientes_id_fk": {
+          "name": "pedidos_clientes_id_clientes_id_fk",
+          "tableFrom": "pedidos",
+          "tableTo": "clientes",
+          "schemaTo": "schema",
+          "columnsFrom": [
+            "clientes_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "schema.categorias": {
+      "name": "categorias",
+      "schema": "schema",
+      "values": [
+        "Indefinida",
+        "Frutíferas",
+        "Floríferas",
+        "Perenes",
+        "Caducifólias"
+      ]
+    }
+  },
+  "schemas": {
+    "schema": "schema"
+  },
+  "sequences": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
