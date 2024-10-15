@@ -1,3 +1,4 @@
+import {nextui} from '@nextui-org/theme';
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -20,8 +21,6 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-  ],
+  plugins: [require('@tailwindcss/aspect-ratio'),nextui()],
 };
 export default config;
