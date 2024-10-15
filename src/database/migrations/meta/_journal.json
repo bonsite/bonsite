@@ -15,6 +15,13 @@
       "when": 1728689206313,
       "tag": "0001_overrated_talon",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1729005239695,
+      "tag": "0002_numerous_violations",
+      "breakpoints": true
     }
   ]
 }
