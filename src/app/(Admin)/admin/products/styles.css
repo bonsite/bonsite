@@ -1,0 +1,15 @@
+.table-cell {
+  border-right: 1px solid #ccc; /* Vertical dividers */
+}
+
+.table-cell:last-child {
+  border-right: none; /* Remove right border for the last column */
+}
+
+.table-row {
+  border-bottom: 1px solid #ccc; /* Horizontal dividers */
+}
+
+.table-row:last-child {
+  border-bottom: none; /* Remove bottom border for the last row */
+}
