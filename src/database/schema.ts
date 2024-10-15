@@ -1,4 +1,4 @@
-import { decimal, serial, text, pgSchema, integer, uuid, boolean } from 'drizzle-orm/pg-core';
+import { decimal, text, pgSchema, integer, uuid, boolean } from 'drizzle-orm/pg-core';
 
 export const Schema = pgSchema("schema");
 
