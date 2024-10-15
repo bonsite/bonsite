@@ -24,7 +24,7 @@ export const bonsaisTable = Schema.table('bonsais', {
     solo_desc: text('solo_desc'),  // Updated to text as per the diagram
     delicadeza: integer('delicadeza').notNull(),
     delicadeza_desc: text('delicadeza_desc'),  // Updated to text as per the diagram
-    visible: boolean('visible').notNull().default(true)  // Renamed 'ativo' to 'visible' as per the diagram
+    visivel: boolean('visivel').notNull().default(true)  // Renamed 'ativo' to 'visible' as per the diagram
 });
 
 // Clientes table
