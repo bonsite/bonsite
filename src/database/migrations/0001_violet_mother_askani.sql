@@ -1,4 +1,3 @@
-CREATE SCHEMA "schema";
 --> statement-breakpoint
 DO $$ BEGIN
  CREATE TYPE "schema"."categorias" AS ENUM('Indefinida', 'Frutíferas', 'Floríferas', 'Perenes', 'Caducifólias');
