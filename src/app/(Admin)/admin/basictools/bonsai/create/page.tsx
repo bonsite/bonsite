@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
 import { useState, useEffect } from 'react';
-import generateUUID from "@/utils/UUID/generateUUID"
+import generateUUID from "@/utils/UUID/generateUUID";
 
 export default function CreateBonsai() {
   // State to manage form data
@@ -32,10 +32,21 @@ export default function CreateBonsai() {
 
   // Add your UUID generation logic here
   useEffect(() => {
-    // Replace this line with your UUID generation function
     const generatedUUID = generateUUID(); 
     setBonsai((prevState) => ({ ...prevState, id: generatedUUID }));
+    updateURL(generatedUUID, '');
   }, []);
+
+  // Update URL based on the name and id
+  useEffect(() => {
+    updateURL(bonsai.id, bonsai.nome);
+  }, [bonsai.nome, bonsai.id]);
+
+  const updateURL = (id: string, name: string) => {
+    const formattedName = name.toLowerCase().replace(/\s+/g, '-');
+    const url = name ? `${formattedName}-${id.substring(0, 3)}` : '';
+    setBonsai((prevState) => ({ ...prevState, url }));
+  };
 
   // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -104,17 +115,16 @@ export default function CreateBonsai() {
             />
           </div>
 
-          {/* URL */}
+          {/* URL Field - Read-only */}
           <div>
-            <label htmlFor="url" className="block text-sm font-medium text-gray-700">URL</label>
+            <label htmlFor="url" className="block text-sm font-medium text-gray-700">URL (Generated)</label>
             <input
               type="text"
               id="url"
               name="url"
               value={bonsai.url}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              readOnly
+              className="mt-1 block w-full bg-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-700 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </div>
 
@@ -187,24 +197,23 @@ export default function CreateBonsai() {
               id="visivel"
               name="visivel"
               checked={bonsai.visivel}
-              onChange={(e) => setBonsai({ ...bonsai, visivel: e.target.checked })}
-              className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+              onChange={(e) => setBonsai((prevState) => ({ ...prevState, visivel: e.target.checked }))}
+              className="mt-1"
             />
           </div>
 
           {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-3 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Create Bonsai
-          </button>
+          <div>
+            <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+              Create Bonsai
+            </button>
+          </div>
 
           {/* Response Message */}
           {responseMessage && (
-            <p className={`text-center mt-4 ${isSuccess ? 'text-green-500' : 'text-red-500'}`}>
+            <div className={`mt-4 text-sm ${isSuccess ? 'text-green-600' : 'text-red-600'}`}>
               {responseMessage}
-            </p>
+            </div>
           )}
         </form>
       </div>
@@ -212,17 +221,26 @@ export default function CreateBonsai() {
   );
 }
 
-// Reusable Input Field Component
-const InputField = ({ label, name, value, handleChange }: any) => (
-  <div>
-    <label htmlFor={name} className="block text-sm font-medium text-gray-700">{label}</label>
-    <input
-      type="text"
-      id={name}
-      name={name}
-      value={value}
-      onChange={handleChange}
-      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-    />
-  </div>
-);
+interface InputFieldProps {
+    label: string;
+    name: string;
+    value: string;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  }
+  
+  function InputField({ label, name, value, handleChange }: InputFieldProps) {
+    return (
+      <div>
+        <label htmlFor={name} className="block text-sm font-medium text-gray-700">{label}</label>
+        <input
+          type="text"
+          id={name}
+          name={name}
+          value={value}
+          onChange={handleChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+    );
+  }
+  
