@@ -1,4 +1,4 @@
-import "../globals.css";
+import "./globals.css";
 import Navbar from '@/components/Store/Header/Navbar';
 
 export const metadata = {
@@ -12,13 +12,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <html lang="en">
 
-        <Navbar></Navbar>
+      <head>
 
-        {children}
+        <link rel='icon' href="https://www.svgrepo.com/show/276833/bonsai.svg"></link>
 
-    </>
-  )
+      </head>
+
+      <body>
+
+      {children}
+      
+      </body>
+
+    </html>
+  );
 }
 
