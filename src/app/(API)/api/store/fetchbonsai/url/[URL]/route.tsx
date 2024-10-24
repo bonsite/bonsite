@@ -7,7 +7,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 // This will handle the dynamic route for fetching bonsai by URL
 export async function GET(request: NextRequest, { params }: { params: { URL: string } }) {
 
-  noStore
+  noStore();
 
   const bonsaiURL = params.URL; // Extract the URL from the dynamic route
   

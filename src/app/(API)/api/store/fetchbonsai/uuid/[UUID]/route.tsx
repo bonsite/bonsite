@@ -7,7 +7,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 // This will handle the dynamic route for fetching bonsai by ID
 export async function GET(request: NextRequest, { params }: { params: { UUID: string } }) {
 
-  noStore
+  noStore();
 
   const bonsaiUUID = params.UUID; // Extract the ID from the dynamic route
   
