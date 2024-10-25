@@ -2,8 +2,13 @@ import { NextResponse } from 'next/server';
 import { fetchBonsaiById } from '../_queries/id/get';
 import { NextRequest } from 'next/server';
 
+import { unstable_noStore as noStore } from 'next/cache';
+
 // This will handle the dynamic route for fetching bonsai by ID
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+
+  noStore();
+
   const bonsaiId = params.id; // Extract the ID from the dynamic route
   
   try {
