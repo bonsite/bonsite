@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 interface Product {
   id: number;
+  url: string;
   nome: string;
   imageSrc: string;
   imageAlt: string;
@@ -13,6 +14,7 @@ interface Product {
 
 interface ProductItemProps {
   id: number;
+  url: string;
   name: string;
   href: string;
   imageSrc: string;
@@ -21,7 +23,7 @@ interface ProductItemProps {
   categoria: string;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({ id, name, href, imageSrc, imageAlt, price, categoria }) => {
+const ProductItem: React.FC<ProductItemProps> = ({ id, url, name, href, imageSrc, imageAlt, price, categoria }) => {
   return (
     <div key={id} className="group relative">
       <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
@@ -63,6 +65,7 @@ const Page: React.FC = () => {
           const imageSrc = await findImage(product.id);
           return {
             id: product.id,
+            url: product.url,
             nome: product.nome,
             imageSrc,
             imageAlt: product.nome,
@@ -110,12 +113,12 @@ const Page: React.FC = () => {
               key={product.id}
               id={product.id}
               name={product.nome}
-              href="#" // Adjust as necessary
+              href={`/produto/${product.url}`} // Adjust as necessary
               imageSrc={product.imageSrc}
               imageAlt={product.imageAlt}
               price={product.preco}
               categoria={product.categoria}
-            />
+              url={product.url}            />
           ))}
         </div>
       </div>
