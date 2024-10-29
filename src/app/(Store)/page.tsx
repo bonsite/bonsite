@@ -62,7 +62,7 @@ const Page: React.FC = () => {
         }
         const data = await response.json();
         const formattedData = await Promise.all(data.map(async (product: any) => {
-          const imageSrc = await findImage(product.id);
+          const imageSrc = await findImage(product.url);
           return {
             id: product.id,
             url: product.url,
@@ -84,9 +84,9 @@ const Page: React.FC = () => {
     fetchProducts();
   }, []);
 
-  const findImage = async (id: number): Promise<string> => {
-    const imagePath = `/images/bonsais/cover/${id}/cover.jpg`;
-    const fallbackImagePath = '/images/bonsais/cover/default-image.jpg';
+  const findImage = async (url: string): Promise<string> => {
+    const imagePath = `/images/bonsais/${url}/cover/cover.jpg`;
+    const fallbackImagePath = '/images/default-image.jpg';
     const imageExists = await checkImageExists(imagePath);
     return imageExists ? imagePath : fallbackImagePath;
   };
@@ -113,12 +113,13 @@ const Page: React.FC = () => {
               key={product.id}
               id={product.id}
               name={product.nome}
-              href={`/produto/${product.url}`} // Adjust as necessary
+              href={`/produto/${product.url}`}
               imageSrc={product.imageSrc}
               imageAlt={product.imageAlt}
               price={product.preco}
               categoria={product.categoria}
-              url={product.url}            />
+              url={product.url}
+            />
           ))}
         </div>
       </div>
