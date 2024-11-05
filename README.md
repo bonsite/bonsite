@@ -10,7 +10,6 @@ Bonsite é uma aplicação web para gerenciar bonsais. Com ela, você pode criar
 
 ## Funcionalidades
 
-- **Administração de Bonsais**: Criação, edição e exclusão de bonsais.
 - **Autenticação**: Login e logout de usuários.
 - **Visualização de Produtos**: Lista e detalhes dos produtos disponíveis.
 - **API**: Endpoints para integração com outras aplicações.
