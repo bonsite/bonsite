@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useState, useMemo } from "react";
+import { useRouter } from 'next/navigation'; // Import the useRouter hook from 'next/navigation' (for client-side routing)
 import {
   Tooltip, User, Input, Button, Pagination
 } from "@nextui-org/react";
@@ -32,8 +33,16 @@ const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
   const rowsPerPage = 5;
+  
+  const [isClient, setIsClient] = useState(false); // Track whether the component is rendered on the client
+
+  // Initialize router only on the client side
+  const router = isClient ? useRouter() : null;
 
   useEffect(() => {
+    // Set isClient to true after the first render to ensure client-side rendering
+    setIsClient(true);
+    
     fetch('/api/store/fetchbonsai/all')
       .then(response => response.json())
       .then(data => setBonsais(data));
@@ -51,12 +60,18 @@ const App = () => {
     return filteredBonsais.slice(start, end);
   }, [filteredBonsais, page, rowsPerPage]);
 
+  const handleDetailsClick = (url: string) => {
+    if (router) {
+      router.push(`/produto/${url}`);
+    }
+  };
+
   const renderCell = (bonsai: Bonsai, columnKey: string) => {
     switch (columnKey) {
       case "image":
         return (
           <User
-            name={bonsai.nome} // Add this line to provide the required name prop
+            name={bonsai.nome} // Provide the name prop to User component
             avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }}
           />
         );
@@ -69,8 +84,11 @@ const App = () => {
       case "actions":
         return (
           <div className="flex items-center gap-2">
-            <Tooltip content="Detalhes">
-              <span className="text-lg cursor-pointer">
+            <Tooltip content="Ver Página na Loja">
+              <span
+                className="text-lg cursor-pointer"
+                onClick={() => handleDetailsClick(bonsai.url)} // Trigger the redirection
+              >
                 <EyeIcon />
               </span>
             </Tooltip>
@@ -90,7 +108,8 @@ const App = () => {
         return bonsai[columnKey];
     }
   };
-  
+
+  if (!isClient) return null; // Ensure component is not rendered on the server side
 
   return (
     <div className="p-4">
