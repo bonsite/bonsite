@@ -31,7 +31,7 @@ export default function CreateBonsai() {
 
   useEffect(() => {
     const generatedUUID = generateUUID(); 
-    setBonsai((prevState) => ({ ...prevState, id: generatedUUID }));
+    setBonsai((prevState: any) => ({ ...prevState, id: generatedUUID }));
     updateURL(generatedUUID, '');
   }, []);
 
@@ -42,12 +42,12 @@ export default function CreateBonsai() {
   const updateURL = (id: string, name: string) => {
     const formattedName = name.toLowerCase().replace(/\s+/g, '-');
     const url = name ? `${formattedName}-${id.substring(0, 3)}` : '';
-    setBonsai((prevState) => ({ ...prevState, url }));
+    setBonsai((prevState: any) => ({ ...prevState, url }));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setBonsai((prevState) => ({ ...prevState, [name]: value }));
+    setBonsai((prevState: any) => ({ ...prevState, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -141,7 +141,7 @@ export default function CreateBonsai() {
               <input
                 type="checkbox"
                 checked={bonsai.visivel}
-                onChange={() => setBonsai((prev) => ({ ...prev, visivel: !prev.visivel }))}
+                onChange={() => setBonsai((prev: { visivel: any; }) => ({ ...prev, visivel: !prev.visivel }))}
                 className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
               />
               <span className="ml-2 text-sm text-gray-700">Visível</span>
