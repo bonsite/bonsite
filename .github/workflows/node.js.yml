@@ -10,8 +10,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-test:
+    name: Build & Test
+    
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,4 +33,12 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run build
-    - run: npm run test --if-present
+    - run: npm run test
+
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: success() || failure()    # run this step even if previous step failed
+      with:
+        name: JEST Tests            # Name of the check run which will be created
+        path: reports/jest-*.xml    # Path to test results
+        reporter: jest-junit        # Format of test results
