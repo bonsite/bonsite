@@ -13,3 +13,16 @@
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=bonsite_bonsite&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=bonsite_bonsite)
 
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=bonsite_bonsite&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=bonsite_bonsite)
+
+-----
+
+
+### To run
+```console
+terraform apply
+```
+
+### To stop
+```console
+terraform destroy
+```
