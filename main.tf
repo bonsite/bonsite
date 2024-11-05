@@ -15,10 +15,10 @@ provider "docker" {
 resource "docker_image" "app_image" {
   name         = "nextjs_app_image"
   build {
-    context    = "${path.module}"
-    dockerfile = "Dockerfile"
+    path = "${path.module}"
   }
 }
+
 
 resource "docker_container" "app_container" {
   name  = "nextjs_app_container"
