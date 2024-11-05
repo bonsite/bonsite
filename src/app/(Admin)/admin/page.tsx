@@ -24,7 +24,7 @@ const columns = [
   { uid: "nome", name: "Nome" },
   { uid: "preco", name: "Preço" },
   { uid: "categoria", name: "Categoria" },
-  { uid: "actions", name: "Actions" }
+  { uid: "actions", name: "Ações" }
 ];
 
 const App = () => {
@@ -54,7 +54,12 @@ const App = () => {
   const renderCell = (bonsai: Bonsai, columnKey: string) => {
     switch (columnKey) {
       case "image":
-        return <User avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }} />;
+        return (
+          <User
+            name={bonsai.nome} // Add this line to provide the required name prop
+            avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }}
+          />
+        );
       case "nome":
         return bonsai.nome;
       case "preco":
@@ -64,17 +69,17 @@ const App = () => {
       case "actions":
         return (
           <div className="flex items-center gap-2">
-            <Tooltip content="Details">
+            <Tooltip content="Detalhes">
               <span className="text-lg cursor-pointer">
                 <EyeIcon />
               </span>
             </Tooltip>
-            <Tooltip content="Edit bonsai">
+            <Tooltip content="Editar bonsai">
               <span className="text-lg cursor-pointer">
                 <EditIcon />
               </span>
             </Tooltip>
-            <Tooltip color="danger" content="Delete bonsai">
+            <Tooltip color="danger" content="Excluir bonsai">
               <span className="text-lg text-red-500 cursor-pointer">
                 <DeleteIcon />
               </span>
@@ -85,19 +90,20 @@ const App = () => {
         return bonsai[columnKey];
     }
   };
+  
 
   return (
     <div className="p-4">
       <div className="flex justify-between gap-3 items-center">
         <Input
           isClearable
-          placeholder="Search by name..."
+          placeholder="Pesquisar por nome..."
           startContent={<SearchIcon />}
           value={searchValue}
           onClear={() => setSearchValue('')}
           onValueChange={setSearchValue}
         />
-        <Button color="primary" endContent={<PlusIcon />}>Add New</Button>
+        <Button color="primary" endContent={<PlusIcon width={5} height={5} />}>Adicionar Novo Bonsai</Button>
       </div>
       <table className="min-w-full border-collapse border border-gray-200 mt-4">
         <thead>
