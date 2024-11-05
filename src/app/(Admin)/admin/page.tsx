@@ -1,10 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
-import { Tooltip, User } from "@nextui-org/react";
+import React, { useEffect, useState, useMemo } from "react";
+import {
+  Tooltip, User, Input, Button, Pagination
+} from "@nextui-org/react";
 import { EditIcon } from "./comps/EditIcon";
 import { DeleteIcon } from "./comps/DeleteIcon";
 import { EyeIcon } from "./comps/EyeIcon";
+import { PlusIcon } from "./comps/PlusIcon";
+import { SearchIcon } from "./comps/SearchIcon";
 
 type Bonsai = {
   id: string;
@@ -12,7 +16,7 @@ type Bonsai = {
   url: string;
   preco: string;
   categoria: string;
-  [key: string]: any; // To handle any extra properties dynamically
+  visible: boolean;
 };
 
 const columns = [
@@ -23,8 +27,11 @@ const columns = [
   { uid: "actions", name: "Actions" }
 ];
 
-export default function App() {
+const App = () => {
   const [bonsais, setBonsais] = useState<Bonsai[]>([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [page, setPage] = useState(1);
+  const rowsPerPage = 5;
 
   useEffect(() => {
     fetch('/api/store/fetchbonsai/all')
@@ -32,18 +39,22 @@ export default function App() {
       .then(data => setBonsais(data));
   }, []);
 
+  const filteredBonsais = useMemo(() => {
+    return bonsais.filter(bonsai => 
+      bonsai.nome.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  }, [bonsais, searchValue]);
+
+  const paginatedBonsais = useMemo(() => {
+    const start = (page - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    return filteredBonsais.slice(start, end);
+  }, [filteredBonsais, page, rowsPerPage]);
+
   const renderCell = (bonsai: Bonsai, columnKey: string) => {
     switch (columnKey) {
       case "image":
-        return (
-          <User
-            avatarProps={{
-              radius: "lg",
-              src: `/images/bonsais/${bonsai.url}/cover/cover.jpg`,
-            }}
-            name=""
-          />
-        );
+        return <User avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }} />;
       case "nome":
         return bonsai.nome;
       case "preco":
@@ -77,30 +88,32 @@ export default function App() {
 
   return (
     <div className="p-4">
-      <table className="min-w-full border-collapse border border-gray-200">
+      <div className="flex justify-between gap-3 items-center">
+        <Input
+          isClearable
+          placeholder="Search by name..."
+          startContent={<SearchIcon />}
+          value={searchValue}
+          onClear={() => setSearchValue('')}
+          onValueChange={setSearchValue}
+        />
+        <Button color="primary" endContent={<PlusIcon />}>Add New</Button>
+      </div>
+      <table className="min-w-full border-collapse border border-gray-200 mt-4">
         <thead>
           <tr>
             {columns.map(column => (
-              <th
-                key={column.uid}
-                className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700"
-              >
+              <th key={column.uid} className="border-b border-gray-300 px-4 py-2 text-left text-sm font-semibold text-gray-700">
                 {column.name}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {bonsais.map(bonsai => (
-            <tr
-              key={bonsai.id}
-              className="border-b border-gray-200 hover:bg-gray-200 transition-colors duration-200 ease-in-out"
-            >
+          {paginatedBonsais.map(bonsai => (
+            <tr key={bonsai.id} className="border-b border-gray-200 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
               {columns.map(column => (
-                <td
-                  key={column.uid}
-                  className="px-4 py-2 text-sm text-gray-700"
-                >
+                <td key={column.uid} className="px-4 py-2 text-sm text-gray-700">
                   {renderCell(bonsai, column.uid)}
                 </td>
               ))}
@@ -108,6 +121,13 @@ export default function App() {
           ))}
         </tbody>
       </table>
+      <Pagination
+        page={page}
+        total={Math.ceil(filteredBonsais.length / rowsPerPage)}
+        onChange={setPage}
+      />
     </div>
   );
-}
+};
+
+export default App;
