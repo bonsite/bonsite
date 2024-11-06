@@ -66,7 +66,7 @@ const App = () => {
     }
   };
 
-  const renderCell = (bonsai: Bonsai, columnKey: string) => {
+  const renderCell = (bonsai: Bonsai, columnKey: keyof Bonsai) => { // ColumnKey now must be a key of Bonsai type
     switch (columnKey) {
       case "image":
         return (
@@ -105,7 +105,7 @@ const App = () => {
           </div>
         );
       default:
-        return bonsai[columnKey];
+        return bonsai[columnKey]; // This will now work because columnKey is a valid key of Bonsai
     }
   };
 
@@ -139,7 +139,7 @@ const App = () => {
             <tr key={bonsai.id} className="border-b border-gray-200 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
               {columns.map(column => (
                 <td key={column.uid} className="px-4 py-2 text-sm text-gray-700">
-                  {renderCell(bonsai, column.uid)}
+                  {renderCell(bonsai, column.uid as keyof Bonsai)} {/* Type assertion here */}
                 </td>
               ))}
             </tr>
