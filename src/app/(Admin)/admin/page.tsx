@@ -66,15 +66,19 @@ const App = () => {
     }
   };
 
-  const renderCell = (bonsai: Bonsai, columnKey: keyof Bonsai) => { // ColumnKey now must be a key of Bonsai type
+  const renderCell = (bonsai: Bonsai, columnKey: string) => {
+    // Handle special case for 'image' column that isn't a Bonsai key
+    if (columnKey === "image") {
+      return (
+        <User
+          name={bonsai.nome} // Provide the name prop to User component
+          avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }}
+        />
+      );
+    }
+    
+    // Otherwise handle columns that correspond to Bonsai keys
     switch (columnKey) {
-      case "image":
-        return (
-          <User
-            name={bonsai.nome} // Provide the name prop to User component
-            avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }}
-          />
-        );
       case "nome":
         return bonsai.nome;
       case "preco":
@@ -105,7 +109,8 @@ const App = () => {
           </div>
         );
       default:
-        return bonsai[columnKey]; // This will now work because columnKey is a valid key of Bonsai
+        // If columnKey doesn't match, return undefined or null
+        return bonsai[columnKey as keyof Bonsai];
     }
   };
 
@@ -139,7 +144,7 @@ const App = () => {
             <tr key={bonsai.id} className="border-b border-gray-200 hover:bg-gray-200 transition-colors duration-200 ease-in-out">
               {columns.map(column => (
                 <td key={column.uid} className="px-4 py-2 text-sm text-gray-700">
-                  {renderCell(bonsai, column.uid as keyof Bonsai)} {/* Type assertion here */}
+                  {renderCell(bonsai, column.uid)}
                 </td>
               ))}
             </tr>
