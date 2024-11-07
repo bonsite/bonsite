@@ -66,6 +66,12 @@ const App = () => {
     }
   };
 
+  const adicionarBonsaiClick = () => {
+    if(router){
+      router.push('/admin/adicionar-bonsai')
+    }
+  }
+
   const renderCell = (bonsai: Bonsai, columnKey: string) => {
     // Handle special case for 'image' column that isn't a Bonsai key
     if (columnKey === "image") {
@@ -127,7 +133,7 @@ const App = () => {
           onClear={() => setSearchValue('')}
           onValueChange={setSearchValue}
         />
-        <Button color="primary" endContent={<PlusIcon width={5} height={5} />}>Adicionar Novo Bonsai</Button>
+        <Button onClick={() => adicionarBonsaiClick()} color="primary" endContent={<PlusIcon width={5} height={5} />}>Adicionar Novo Bonsai</Button>
       </div>
       <table className="min-w-full border-collapse border border-gray-200 mt-4">
         <thead>
