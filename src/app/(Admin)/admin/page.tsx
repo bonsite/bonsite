@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState, useMemo } from "react";
-import { useRouter } from 'next/navigation'; // Import the useRouter hook from 'next/navigation' (for client-side routing)
+import { useRouter } from 'next/navigation';
 import {
   Tooltip, User, Input, Button, Pagination
 } from "@nextui-org/react";
@@ -33,23 +33,18 @@ const App = () => {
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
   const rowsPerPage = 5;
-  
-  const [isClient, setIsClient] = useState(false); // Track whether the component is rendered on the client
-
-  // Initialize router only on the client side
+  const [isClient, setIsClient] = useState(false);
   const router = isClient ? useRouter() : null;
 
   useEffect(() => {
-    // Set isClient to true after the first render to ensure client-side rendering
     setIsClient(true);
-    
     fetch('/api/store/fetchbonsai/all')
       .then(response => response.json())
       .then(data => setBonsais(data));
   }, []);
 
   const filteredBonsais = useMemo(() => {
-    return bonsais.filter(bonsai => 
+    return bonsais.filter(bonsai =>
       bonsai.nome.toLowerCase().includes(searchValue.toLowerCase())
     );
   }, [bonsais, searchValue]);
@@ -67,23 +62,40 @@ const App = () => {
   };
 
   const adicionarBonsaiClick = () => {
-    if(router){
-      router.push('/admin/adicionar-bonsai')
+    if (router) {
+      router.push('/admin/adicionar-bonsai');
     }
   }
 
+  const handleDelete = async (url: string) => {
+    try {
+      const response = await fetch(`/api/admin/dashboard/crud/delete/${url}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete bonsai');
+      }
+
+      // Update the UI by removing the deleted bonsai
+      setBonsais((prevBonsais) => prevBonsais.filter((bonsai) => bonsai.url !== url));
+      alert('Bonsai deleted successfully!');
+    } catch (error) {
+      console.error('Error deleting bonsai:', error);
+      alert('Failed to delete bonsai. Please try again later.');
+    }
+  };
+
   const renderCell = (bonsai: Bonsai, columnKey: string) => {
-    // Handle special case for 'image' column that isn't a Bonsai key
     if (columnKey === "image") {
       return (
         <User
-          name={bonsai.nome} // Provide the name prop to User component
+          name={bonsai.nome}
           avatarProps={{ radius: "lg", src: `/images/bonsais/${bonsai.url}/cover/cover.jpg` }}
         />
       );
     }
     
-    // Otherwise handle columns that correspond to Bonsai keys
     switch (columnKey) {
       case "nome":
         return bonsai.nome;
@@ -97,7 +109,7 @@ const App = () => {
             <Tooltip content="Ver Página na Loja">
               <span
                 className="text-lg cursor-pointer"
-                onClick={() => handleDetailsClick(bonsai.url)} // Trigger the redirection
+                onClick={() => handleDetailsClick(bonsai.url)} 
               >
                 <EyeIcon />
               </span>
@@ -108,19 +120,21 @@ const App = () => {
               </span>
             </Tooltip>
             <Tooltip color="danger" content="Excluir bonsai">
-              <span className="text-lg text-red-500 cursor-pointer">
+              <span 
+                className="text-lg text-red-500 cursor-pointer" 
+                onClick={() => handleDelete(bonsai.url)} // Call handleDelete on click
+              >
                 <DeleteIcon />
               </span>
             </Tooltip>
           </div>
         );
       default:
-        // If columnKey doesn't match, return undefined or null
         return bonsai[columnKey as keyof Bonsai];
     }
   };
 
-  if (!isClient) return null; // Ensure component is not rendered on the server side
+  if (!isClient) return null;
 
   return (
     <div className="p-4">
