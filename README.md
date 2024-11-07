@@ -27,6 +27,14 @@ terraform destroy
 ```
 
 ---------------
+## Tech Stack
+
+#### Development
+[![My Skills](https://skillicons.dev/icons?i=nextjs,react,tailwind,postgres,nodejs,css,ts,js,jest)](https://skillicons.dev)
+#### DevOps
+[![My Skills](https://skillicons.dev/icons?i=docker,terraform,githubactions)](https://skillicons.dev)
+
+---------------
 
 ## Descrição
 
