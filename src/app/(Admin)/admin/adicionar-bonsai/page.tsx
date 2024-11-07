@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation'; // Import useRouter
 import generateUUID from "@/utils/UUID/generateUUID";
 
 export default function CreateBonsai() {
@@ -29,8 +30,10 @@ export default function CreateBonsai() {
   const [responseMessage, setResponseMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState<boolean | null>(null);
 
+  const router = useRouter(); // Initialize router
+
   useEffect(() => {
-    const generatedUUID = generateUUID(); 
+    const generatedUUID = generateUUID();
     setBonsai((prevState) => ({ ...prevState, id: generatedUUID }));
     updateURL(generatedUUID, '');
   }, []);
@@ -78,9 +81,37 @@ export default function CreateBonsai() {
     }
   };
 
+  const handleBackToDashboard = () => {
+    router.push('/admin'); // Navigate back to the dashboard
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="max-w-3xl w-full bg-white shadow-lg rounded-lg p-8">
+        {/* Back to Dashboard Button */}
+        <div className="mb-6">
+          <button
+            onClick={handleBackToDashboard}
+            className="text-green-600 hover:text-green-800 font-medium text-lg flex items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Voltar para Dashboard
+          </button>
+        </div>
+
         <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Criar um Novo Bonsai</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <InputField label="ID do Bonsai (Gerado)" name="id" value={bonsai.id} readOnly />
@@ -120,6 +151,9 @@ export default function CreateBonsai() {
     </div>
   );
 }
+
+// The rest of your component code remains the same...
+
 
 interface InputProps {
   label: string;
