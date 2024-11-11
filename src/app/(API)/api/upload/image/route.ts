@@ -9,6 +9,9 @@ export async function POST(req: Request) {
     const file = formData.get("file") as File;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
+
+    let url = formData.get('url') as string;
+
     await fs.writeFile(`./public/images/${file.name}`, buffer);
 
     revalidatePath("/");
