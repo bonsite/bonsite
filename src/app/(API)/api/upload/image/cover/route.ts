@@ -12,7 +12,9 @@ export async function POST(req: Request) {
 
     let url = formData.get('url') as string;
 
-    await fs.writeFile(`./public/images/${file.name}`, buffer);
+    let path = `./public/images/bonsais/${url}/cover${file.name.slice(file.name.lastIndexOf('.'))}`;
+
+    await fs.writeFile(path, buffer);
 
     revalidatePath("/");
 
