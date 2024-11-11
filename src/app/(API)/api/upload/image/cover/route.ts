@@ -12,7 +12,14 @@ export async function POST(req: Request) {
 
     let url = formData.get('url') as string;
 
-    let path = `./public/images/bonsais/${url}/cover${file.name.slice(file.name.lastIndexOf('.'))}`;
+    
+    const directory = `./public/images/bonsais/${url}`;
+    const path = `${directory}/cover${file.name.slice(file.name.lastIndexOf('.'))}`;
+
+    
+
+    await fs.mkdir(directory, { recursive: true });
+
 
     await fs.writeFile(path, buffer);
 
