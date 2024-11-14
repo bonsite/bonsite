@@ -5,11 +5,11 @@ import { useRouter } from 'next/navigation';
 import {
   Tooltip, User, Input, Button, Pagination
 } from "@nextui-org/react";
-import { EditIcon } from "./comps/EditIcon";
-import { DeleteIcon } from "./comps/DeleteIcon";
-import { EyeIcon } from "./comps/EyeIcon";
-import { PlusIcon } from "./comps/PlusIcon";
-import { SearchIcon } from "./comps/SearchIcon";
+import { EditIcon } from "./_comps/EditIcon";
+import { DeleteIcon } from "./_comps/DeleteIcon";
+import { EyeIcon } from "./_comps/EyeIcon";
+import { PlusIcon } from "./_comps/PlusIcon";
+import { SearchIcon } from "./_comps/SearchIcon";
 
 type Bonsai = {
   id: string;
