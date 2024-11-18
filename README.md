@@ -34,6 +34,8 @@ terraform destroy
 #### DevOps
 [![My Skills](https://skillicons.dev/icons?i=docker,terraform,githubactions)](https://skillicons.dev)
 
+![image](https://github.com/user-attachments/assets/958c246d-687f-40ec-b281-602c2ae9297c)
+
 ---------------
 
 ## Descrição
